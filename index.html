@@ -1,0 +1,2776 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>LA ARGUMENTACIÓN | IES Torre del Rei - Prof. Nuria Ribés</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================================
+       VARIABLES Y PALETA DE COLORES (INSPIRADA EN EL ORIGINAL + M.C. ESCHER)
+       ========================================================================== */
+    :root {
+      --bg-parchment: #FBF6EE;
+      --bg-gradient: radial-gradient(circle at 80% 75%, #F5DEC9 0%, #FBF6EE 55%, #F6EFE2 100%);
+      --card-bg: #FFFFFF;
+      --card-bg-warm: #FDF9F3;
+      --card-terracotta: #E5B28D;
+      --card-terracotta-soft: #F6DFC9;
+      --card-peach-soft: #F9EAE1;
+      --card-slate: #6E8291;
+
+      --navy-primary: #093954;
+      --navy-light: #165375;
+      --terracotta-accent: #C87D55;
+      --terracotta-deep: #8A4F30;
+      --brown-meta: #5D412D;
+
+      /* Colores exactos del documento original */
+      --hl-red: #C00000;
+      --hl-blue: #0070C0;
+      --table-lime: #D2DC32;
+      --table-lime-border: #7E871B;
+      --table-cyan: #00ACC1;
+      --pink-deductiva: #FCE4DF;
+      --blue-cuerpo: #CFE5F5;
+
+      --text-main: #093954;
+      --text-dark: #1E293B;
+      --text-muted: #574C43;
+
+      --border-soft: rgba(9, 57, 84, 0.16);
+      --border-warm: rgba(200, 125, 85, 0.38);
+      --shadow-sm: 0 3px 10px rgba(9, 57, 84, 0.06);
+      --shadow-md: 0 6px 20px rgba(9, 57, 84, 0.10);
+      --shadow-lg: 0 12px 32px rgba(9, 57, 84, 0.16);
+
+      --font-heading: 'Cinzel', Georgia, serif;
+      --font-literary: 'Playfair Display', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-scale: 1;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      max-width: 100vw;
+      max-height: 100vh;
+      overflow: hidden;
+      background: var(--bg-parchment);
+      background-image: var(--bg-gradient);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: calc(15px * var(--font-scale));
+      line-height: 1.38;
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+    }
+
+    /* Marco decorativo sutil */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      border: 6px solid rgba(229, 178, 141, 0.35);
+      box-shadow: inset 0 0 0 1.5px rgba(9, 57, 84, 0.22);
+      z-index: 95;
+    }
+
+    .app-viewport {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ==========================================================================
+       BARRA SUPERIOR COMPACTA
+       ========================================================================== */
+    .top-header {
+      height: 46px;
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(12px, 2vw, 28px);
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1.5px solid var(--border-warm);
+      z-index: 50;
+      flex-shrink: 0;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-badge {
+      background: var(--navy-primary);
+      color: #FFF;
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.8px;
+    }
+
+    .brand-title {
+      font-family: var(--font-heading);
+      font-size: clamp(0.82rem, 1.1vw, 1rem);
+      font-weight: 800;
+      color: var(--navy-primary);
+      letter-spacing: 0.5px;
+    }
+
+    .header-pills {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-pill {
+      background: transparent;
+      border: 1px solid transparent;
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .nav-pill:hover {
+      background: rgba(229, 178, 141, 0.25);
+      color: var(--navy-primary);
+      border-color: var(--border-warm);
+    }
+
+    .nav-pill.active {
+      background: var(--navy-primary);
+      color: #FFFFFF;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ctrl-btn {
+      background: #FFFFFF;
+      border: 1px solid var(--border-soft);
+      color: var(--navy-primary);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.18s ease;
+    }
+
+    .ctrl-btn:hover {
+      background: var(--navy-primary);
+      color: #FFFFFF;
+      border-color: var(--navy-primary);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       ESCENARIO DE DIAPOSITIVAS (SIN SCROLL A PANTALLA COMPLETA)
+       ========================================================================== */
+    .slide-stage {
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      padding: clamp(8px, 1.4vh, 16px) clamp(16px, 2.5vw, 36px);
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: scale(0.985) translateY(6px);
+      transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.2, 0, 0.2, 1), visibility 0.28s;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: scale(1) translateY(0);
+      z-index: 10;
+    }
+
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid var(--border-warm);
+      padding-bottom: clamp(3px, 0.6vh, 7px);
+      margin-bottom: clamp(6px, 1.1vh, 12px);
+      flex-shrink: 0;
+    }
+
+    .slide-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.15rem, 2.2vw, 1.85rem);
+      font-weight: 800;
+      color: var(--navy-primary);
+      line-height: 1.15;
+      letter-spacing: 0.4px;
+    }
+
+    .slide-subtitle-badge {
+      font-family: var(--font-body);
+      font-size: clamp(0.72rem, 0.95vw, 0.88rem);
+      font-weight: 800;
+      color: var(--terracotta-deep);
+      background: var(--card-terracotta-soft);
+      border: 1px solid var(--border-warm);
+      padding: 3px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.4px;
+    }
+
+    .slide-body {
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+      display: flex;
+      gap: clamp(10px, 1.6vw, 22px);
+      align-items: stretch;
+      justify-content: stretch;
+      overflow: hidden;
+    }
+
+    /* ==========================================================================
+       TARJETAS AMPLIABLES Y JERARQUÍA DEL TEXTO
+       ========================================================================== */
+    .expandable-card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--border-soft);
+      border-left: 6px solid var(--navy-primary);
+      border-radius: 12px;
+      padding: clamp(8px, 1.4vh, 16px) clamp(12px, 1.6vw, 22px);
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: transform 0.18s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.18s ease, border-color 0.18s ease;
+      text-align: justify;
+    }
+
+    .expandable-card:hover {
+      transform: translateY(-2px) scale(1.005);
+      box-shadow: var(--shadow-md);
+      border-color: var(--terracotta-accent);
+    }
+
+    .expandable-card::after {
+      content: "⤢ Ampliar";
+      position: absolute;
+      top: 6px;
+      right: 10px;
+      font-size: 0.65rem;
+      font-family: var(--font-body);
+      font-weight: 700;
+      color: var(--navy-primary);
+      background: rgba(251, 246, 238, 0.95);
+      border: 1px solid var(--border-warm);
+      padding: 1px 7px;
+      border-radius: 6px;
+      opacity: 0;
+      transition: opacity 0.18s ease;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .expandable-card:hover::after {
+      opacity: 0.96;
+    }
+
+    .expandable-card.terracotta-box {
+      background: linear-gradient(135deg, #ECC0A1 0%, #E5B28D 100%);
+      border-color: #C87D55;
+      border-left: 6px solid var(--navy-primary);
+      color: var(--navy-primary);
+    }
+
+    .expandable-card.warm-tint {
+      background: linear-gradient(135deg, #FFFFFF 0%, #FDF6EE 100%);
+      border-left-color: var(--terracotta-accent);
+    }
+
+    .expandable-card.red-accent {
+      border-left-color: var(--hl-red);
+      background: linear-gradient(135deg, #FFFFFF 0%, #FFF7F7 100%);
+    }
+
+    .expandable-card.blue-accent {
+      border-left-color: var(--hl-blue);
+      background: linear-gradient(135deg, #FFFFFF 0%, #F4F9FF 100%);
+    }
+
+    .expandable-card p, .expandable-card li {
+      font-size: clamp(0.88rem, 1.32vw, 1.18rem);
+      line-height: 1.44;
+      color: var(--navy-primary);
+      text-align: justify;
+    }
+
+    .expandable-card p + p {
+      margin-top: clamp(6px, 1vh, 12px);
+    }
+
+    /* Colores de énfasis idénticos al original */
+    .hl-red {
+      color: var(--hl-red) !important;
+    }
+    .hl-blue {
+      color: var(--hl-blue) !important;
+    }
+    strong, b {
+      font-weight: 800;
+    }
+
+    /* Contenedor de imagen lateral */
+    .pane-text {
+      flex: 1.35;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: clamp(6px, 1.1vh, 12px);
+    }
+
+    .pane-image {
+      flex: 0.78;
+      min-height: 0;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: default;
+      overflow: hidden;
+    }
+
+    .pane-image img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 0;
+      mix-blend-mode: multiply;
+    }
+
+    .pane-image img.no-blend {
+      mix-blend-mode: normal;
+    }
+
+    .pane-image.zoomable-2x {
+      cursor: zoom-in;
+      overflow: visible;
+      z-index: 20;
+    }
+
+    .pane-image.zoomable-2x img {
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), filter 0.28s ease;
+      transform-origin: right center;
+    }
+
+    .pane-image.zoomable-2x.zoomed-2x {
+      cursor: zoom-out;
+      z-index: 120;
+    }
+
+    .pane-image.zoomable-2x.zoomed-2x img {
+      transform: scale(2);
+      mix-blend-mode: normal;
+      filter: drop-shadow(0 16px 36px rgba(9, 57, 84, 0.38));
+    }
+
+    /* ==========================================================================
+       SLIDE 1: CITA LITERARIA + PORTADA
+       ========================================================================== */
+    .cover-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: clamp(16px, 2.2vw, 32px);
+      width: 100%;
+      height: 100%;
+      align-items: stretch;
+    }
+
+    .quote-card-inaugural {
+      background: linear-gradient(145deg, #093954 0%, #124E70 100%);
+      color: #FBF6EE;
+      border-radius: 16px;
+      padding: clamp(22px, 3.5vh, 40px) clamp(22px, 2.8vw, 38px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: clamp(16px, 2.5vh, 28px);
+      box-shadow: var(--shadow-md);
+      border: 2px solid var(--card-terracotta);
+      position: relative;
+      cursor: default;
+    }
+
+    .quote-body-text {
+      font-family: var(--font-literary);
+      font-size: clamp(1.15rem, 1.75vw, 1.58rem);
+      font-style: italic;
+      line-height: 1.62;
+      color: #FFFFFF;
+      text-align: left !important;
+      margin: auto 0;
+    }
+
+    .quote-dialogue-lines {
+      margin-top: 10px;
+      padding-left: 12px;
+      border-left: 3px solid var(--card-terracotta);
+      font-style: normal;
+      font-size: clamp(0.9rem, 1.25vw, 1.12rem);
+      color: #F6DFC9;
+    }
+
+    .quote-author-footer {
+      font-family: var(--font-heading);
+      font-size: clamp(0.78rem, 1vw, 0.92rem);
+      font-weight: 700;
+      color: var(--card-terracotta);
+      text-align: right !important;
+      border-top: 1px solid rgba(229, 178, 141, 0.3);
+      padding-top: 8px;
+    }
+
+    .cover-center-card {
+      background: #FFFFFF;
+      border: 2px solid var(--border-warm);
+      border-radius: 16px;
+      padding: clamp(18px, 3vh, 34px) clamp(18px, 2.2vw, 30px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    .cover-unit-tag {
+      display: inline-block;
+      align-self: flex-start;
+      background: var(--card-terracotta-soft);
+      color: var(--brown-meta);
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 0.78rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--border-warm);
+    }
+
+    .cover-main-heading {
+      font-family: var(--font-heading);
+      font-size: clamp(1.75rem, 3.1vw, 2.85rem);
+      font-weight: 900;
+      color: var(--navy-primary);
+      line-height: 1.12;
+      letter-spacing: 0.5px;
+      margin: auto 0;
+      word-break: break-word;
+    }
+
+    .cover-meta-block {
+      border-top: 2px solid var(--card-terracotta);
+      padding-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      color: var(--brown-meta);
+      font-size: clamp(0.95rem, 1.3vw, 1.2rem);
+      font-weight: 700;
+    }
+
+    .start-presentation-btn {
+      margin-top: 12px;
+      background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-light) 100%);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 22px;
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+    }
+
+    .start-presentation-btn:hover {
+      background: var(--terracotta-accent);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       SLIDE 2: FLUJO JERÁRQUICO CON FLECHAS Y TARJETAS GIRADAS
+       ========================================================================== */
+    .flow-arrow-down {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: clamp(20px, 3vh, 30px);
+      flex-shrink: 0;
+    }
+
+    .flow-arrow-down svg {
+      width: clamp(24px, 3.2vh, 34px);
+      height: clamp(20px, 2.8vh, 28px);
+      fill: #647D92;
+      stroke: #093954;
+      stroke-width: 1.5;
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,0.12));
+    }
+
+    .flip-card-s2 {
+      perspective: 1400px;
+      width: 100%;
+      flex: 1;
+      display: flex;
+      cursor: pointer;
+      min-height: 82px;
+    }
+
+    .flip-card-s2-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+      transform: rotateY(180deg);
+      display: grid;
+    }
+
+    .flip-card-s2.is-flipped .flip-card-s2-inner {
+      transform: rotateY(0deg);
+    }
+
+    .flip-card-s2-front,
+    .flip-card-s2-back {
+      grid-area: 1 / 1;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .flip-card-s2-front {
+      transform: rotateY(0deg);
+    }
+
+    .flip-card-s2-back {
+      transform: rotateY(180deg);
+      border-radius: var(--radius-card);
+      background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-light) 100%);
+      border: 2px solid var(--card-terracotta);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+       flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      color: #FBF6EE;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .flip-card-s2:not(.is-flipped):hover .flip-card-s2-back {
+      box-shadow: var(--shadow-md);
+      border-color: #FFFFFF;
+      background: linear-gradient(135deg, var(--navy-light) 0%, var(--terracotta-accent) 100%);
+    }
+
+    .flip-back-badge {
+      width: clamp(36px, 4.5vh, 46px);
+      height: clamp(36px, 4.5vh, 46px);
+      border-radius: 50%;
+      background: var(--card-terracotta);
+      color: var(--navy-primary);
+      font-family: var(--font-heading);
+      font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .flip-back-icon {
+      font-size: clamp(1.3rem, 2vw, 1.75rem);
+      color: var(--card-terracotta);
+      opacity: 0.9;
+    }
+
+    /* ==========================================================================
+       SLIDE 3: CITAS DE TEXTOS (ROJAS MARCOS & MARTÍNEZ COLL)
+       ========================================================================== */
+    .excerpt-card {
+      background: #FFFFFF;
+      border: 1.5px solid #B8B5B0;
+      border-left: 6px solid var(--navy-primary);
+      border-radius: 10px;
+      padding: clamp(12px, 2vh, 22px) clamp(16px, 2vw, 26px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .excerpt-card > p:first-child {
+      margin: auto 0;
+    }
+
+    .excerpt-citation {
+      font-size: clamp(0.76rem, 1.05vw, 0.94rem) !important;
+      color: #4A5568 !important;
+      text-align: right !important;
+      margin-top: 8px;
+      border-top: 1px dashed rgba(9, 57, 84, 0.18);
+      padding-top: 6px;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       SLIDE 5 & 16: TARJETAS CON TÍTULO EN LA PARTE SUPERIOR Y TEXTO CENTRADO
+       ========================================================================== */
+    .ambitos-grid-2x2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: clamp(8px, 1.3vh, 14px);
+      flex: 1.42;
+      height: 100%;
+      min-height: 0;
+    }
+
+    .ambito-heading {
+      font-family: var(--font-body);
+      font-size: clamp(0.92rem, 1.25vw, 1.14rem);
+      font-weight: 800;
+      color: var(--navy-primary);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1.5px solid var(--border-warm);
+      padding-bottom: 4px;
+      flex-shrink: 0;
+    }
+
+    .ambito-heading + p,
+    .ambito-heading + ul {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    /* ==========================================================================
+       TABLAS INTERACTIVAS AMPLIABLES (SLIDES 6, 7, 11, 12)
+       ========================================================================== */
+    .comp-table-wrap {
+      width: 100%;
+      background: #FFFFFF;
+      border-radius: 10px;
+      border: 1.5px solid var(--navy-primary);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .comp-table-wrap:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .comp-table-wrap::after {
+      content: "⤢ Ampliar tabla";
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--navy-primary);
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid var(--border-warm);
+      padding: 1px 8px;
+      border-radius: 6px;
+      opacity: 0;
+      transition: opacity 0.18s ease;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .comp-table-wrap:hover::after {
+      opacity: 0.96;
+    }
+
+    .orig-table {
+      width: 100%;
+      height: 100%;
+      border-collapse: collapse;
+    }
+
+    .orig-table th, .orig-table td {
+      border: 1px solid #555555;
+      padding: clamp(4px, 0.75vh, 9px) clamp(8px, 1.1vw, 14px);
+      vertical-align: middle;
+      text-align: justify;
+      font-size: clamp(0.76rem, 1.05vw, 0.96rem);
+      line-height: 1.3;
+      color: #222222;
+    }
+
+    /* Tabla verde lima (Slide 6) */
+    .orig-table.lime-theme td.col-label {
+      background-color: var(--table-lime);
+      font-weight: 800;
+      color: #1F2408;
+      width: 19%;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    /* Tabla Tipos de argumentos (Slide 11, idéntica a Tipos de argumentos.jpg) */
+    .orig-table.burgundy-theme th {
+      background-color: #820048;
+      color: #FFFFFF;
+      font-weight: 800;
+      text-align: left;
+      font-size: clamp(0.78rem, 1.06vw, 0.98rem);
+      padding: clamp(4px, 0.65vh, 8px) clamp(8px, 1.1vw, 14px);
+      border-color: #820048;
+    }
+
+    .orig-table.burgundy-theme td {
+      border-color: #9E6B85;
+      padding: clamp(3px, 0.58vh, 7px) clamp(8px, 1.1vw, 14px);
+      font-size: clamp(0.72rem, 0.98vw, 0.92rem);
+      line-height: 1.24;
+      vertical-align: middle;
+    }
+
+    .orig-table.burgundy-theme td.col-label {
+      background-color: #F4D3DF;
+      font-weight: 800;
+      color: #222222;
+      width: 15%;
+      text-align: left;
+    }
+
+    /* ==========================================================================
+       SLIDE 7: RASGOS LINGÜÍSTICOS Y EJEMPLO ANALIZADO
+       ========================================================================== */
+    .rasgos-tabs-bar {
+      display: inline-flex;
+      gap: 6px;
+      background: #EFE6D8;
+      padding: 3px;
+      border-radius: 22px;
+      border: 1px solid var(--border-warm);
+    }
+
+    .rasgos-tab-btn {
+      border: none;
+      background: transparent;
+      color: var(--navy-primary);
+      font-family: var(--font-body);
+      font-size: clamp(0.74rem, 0.96vw, 0.88rem);
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 18px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .rasgos-tab-btn:hover {
+      background: rgba(9, 57, 84, 0.08);
+    }
+
+    .rasgos-tab-btn.active {
+      background: var(--navy-primary);
+      color: #FFFFFF;
+      box-shadow: 0 2px 5px rgba(9, 57, 84, 0.22);
+    }
+
+    .rasgos-view-panel {
+      display: none;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+    }
+
+    .rasgos-view-panel.active {
+      display: flex;
+    }
+
+    .rasgos-grid-4x2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(4, 1fr);
+      gap: clamp(6px, 1vh, 11px) clamp(10px, 1.4vw, 18px);
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+    }
+
+    .rasgos-grid-4x2 .expandable-card {
+      padding: clamp(6px, 1vh, 12px) clamp(12px, 1.4vw, 18px);
+    }
+
+    .rasgos-grid-4x2 .ambito-heading {
+      font-size: clamp(0.84rem, 1.12vw, 1.02rem);
+      margin-bottom: 4px;
+      padding-bottom: 3px;
+    }
+
+    .rasgos-grid-4x2 .expandable-card p {
+      font-size: clamp(0.76rem, 1.04vw, 0.96rem);
+      line-height: 1.32;
+    }
+
+    /* Panel del ejemplo con resaltados por colores */
+    .rasgos-ejemplo-layout {
+      display: flex;
+      gap: clamp(12px, 1.8vw, 24px);
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      align-items: stretch;
+    }
+
+    .rasgos-ejemplo-text-card {
+      flex: 1.85;
+      background: #FFFFFF;
+      border: 1.5px solid #E2D5C1;
+      border-left: 6px solid var(--navy-primary);
+      padding: clamp(12px, 2vh, 22px) clamp(16px, 2.2vw, 28px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: clamp(8px, 1.4vh, 14px);
+    }
+
+    .rasgos-ejemplo-text-card p {
+      font-family: var(--font-literary);
+      font-size: clamp(0.84rem, 1.18vw, 1.08rem) !important;
+      line-height: 1.54 !important;
+      color: #1F2933 !important;
+      text-align: justify;
+      margin: 0 !important;
+    }
+
+    .rasgos-legend-card {
+      flex: 0.78;
+      background: #FFFFFF;
+      border: 1.5px solid #E2D5C1;
+      border-radius: 12px;
+      padding: clamp(10px, 1.6vh, 18px) clamp(12px, 1.5vw, 20px);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .rasgos-legend-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      gap: clamp(4px, 0.8vh, 8px);
+      margin: auto 0;
+      padding: 0;
+    }
+
+    .rasgos-legend-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: clamp(0.76rem, 1.02vw, 0.94rem);
+      line-height: 1.28;
+      color: #222222;
+      padding: 4px 6px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .rasgos-legend-item:hover,
+    .rasgos-legend-item.active-filter {
+      background: var(--bg-parchment);
+      transform: translateX(3px);
+      font-weight: 700;
+    }
+
+    .legend-swatch {
+      width: 15px;
+      height: 15px;
+      border-radius: 3px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    /* Colores exactos de Rasgos língüísticos_ejemplo.jpg */
+    .r-hl {
+      padding: 1px 4px;
+      border-radius: 3px;
+      transition: opacity 0.2s ease, box-shadow 0.2s ease;
+    }
+    .r-p1pl, .swatch-p1pl { background-color: #A8D663; color: #1A2B08; }
+    .r-compuesta, .swatch-compuesta { background-color: #FFDA91; color: #2D1E00; }
+    .r-perifrasis, .swatch-perifrasis { background-color: #C6ADDA; color: #231330; }
+    .r-apelacion, .swatch-apelacion { background-color: #63C39C; color: #0B291D; }
+    .r-verbo, .swatch-verbo { background-color: #FFF112; color: #222000; }
+    .r-retorica, .swatch-retorica { background-color: #A3DEE5; color: #0A272B; }
+    .r-valorativo, .swatch-valorativo { background-color: #F7CED7; color: #331018; }
+    .r-conector, .swatch-conector { background-color: #ED5C3F; color: #1B0602; }
+
+    .rasgos-ejemplo-text-card.filtering .r-hl:not(.spotlight) {
+      background-color: transparent !important;
+      opacity: 0.55;
+    }
+    .rasgos-ejemplo-text-card.filtering .r-hl.spotlight {
+      box-shadow: 0 0 0 2px var(--navy-primary);
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       SLIDE 12: ¿QUÉ TIPOS DE ARGUMENTOS SON? (GRILLA 5x2 CON 10 EJEMPLOS)
+       ========================================================================== */
+    .quiz-grid-5x2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(5, 1fr);
+      gap: clamp(5px, 0.85vh, 10px) clamp(10px, 1.4vw, 18px);
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+    }
+
+    .quiz-grid-5x2 .expandable-card {
+      padding: clamp(5px, 0.85vh, 10px) clamp(10px, 1.3vw, 16px);
+    }
+
+    .quiz-grid-5x2 .ambito-heading {
+      font-size: clamp(0.78rem, 1.02vw, 0.94rem);
+      margin-bottom: 3px;
+      padding-bottom: 2px;
+      color: var(--terracotta-deep);
+    }
+
+    .quiz-grid-5x2 .expandable-card p {
+      font-size: clamp(0.74rem, 0.98vw, 0.9rem);
+      line-height: 1.26;
+    }
+
+    /* En la vista de diapositiva la respuesta permanece oculta; solo aparece al ampliar */
+    .quiz-grid-5x2 .arg-answer-box {
+      display: none;
+    }
+
+    .card-modal-body .arg-answer-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 22px;
+      padding: 16px 22px !important;
+      background: var(--bg-parchment);
+      border: 2px dashed var(--terracotta-accent);
+      border-radius: 12px !important;
+      text-align: center !important;
+    }
+
+    .card-modal-body .arg-answer-box.revealed {
+      border-style: solid;
+      border-color: var(--navy-primary);
+      background: linear-gradient(135deg, #ECC0A1 0%, #F6EAE2 100%);
+    }
+
+    .arg-answer-box.hidden-answer .answer-label {
+      display: none;
+    }
+
+    .arg-answer-box.revealed .answer-label {
+      display: inline-block;
+      font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+      font-weight: 800;
+      color: var(--navy-primary);
+    }
+
+    .reveal-pill-btn {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-light) 100%);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 24px;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.18s ease;
+    }
+
+    .reveal-pill-btn:hover {
+      background: var(--terracotta-accent);
+      transform: translateY(-1px);
+    }
+
+    .arg-answer-box.revealed .reveal-pill-btn {
+      display: none;
+    }
+
+    /* ==========================================================================
+       SLIDE 17: ESTRELLAS JERARQUIZADAS (★)
+       ========================================================================== */
+    .star-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(8px, 1.4vh, 16px);
+      padding-left: 0;
+    }
+
+    .star-item {
+      position: relative;
+      padding-left: 28px;
+      font-size: clamp(0.92rem, 1.36vw, 1.22rem);
+      line-height: 1.45;
+      color: var(--navy-primary);
+      text-align: justify;
+    }
+
+    .star-item::before {
+      content: "★";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--navy-primary);
+      font-size: 1.05em;
+    }
+
+    /* ==========================================================================
+       SLIDE 18: ESTRUCTURA SEGÚN LA POSICIÓN DE LA TESIS
+       ========================================================================== */
+    .structure-diagram-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      gap: clamp(8px, 1.2vh, 14px);
+      justify-content: space-between;
+    }
+
+    .structure-top-node {
+      align-self: center;
+      background: #FFFFFF;
+      border: 2px solid #444444;
+      padding: clamp(5px, 0.9vh, 10px) clamp(18px, 2.5vw, 36px);
+      font-size: clamp(0.88rem, 1.25vw, 1.12rem);
+      font-weight: 600;
+      color: #222222;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .structure-cols-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(12px, 2vw, 28px);
+      flex: 1;
+      min-height: 0;
+      align-items: stretch;
+    }
+
+    .structure-col-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border-warm);
+      border-radius: 12px;
+      padding: clamp(10px, 1.5vh, 16px);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(8px, 1.2vh, 12px);
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .structure-col-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .structure-col-card::after {
+      content: "⤢ Ampliar";
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: var(--navy-primary);
+      background: rgba(251, 246, 238, 0.95);
+      border: 1px solid var(--border-warm);
+      padding: 1px 6px;
+      border-radius: 5px;
+      opacity: 0;
+      transition: opacity 0.18s ease;
+    }
+
+    .structure-col-card:hover::after {
+      opacity: 0.95;
+    }
+
+    .structure-col-header {
+      border: 1.5px solid #555555;
+      padding: clamp(6px, 1vh, 12px);
+      text-align: center !important;
+      font-size: clamp(0.95rem, 1.3vw, 1.18rem);
+      font-weight: 600;
+      color: #222222;
+      background: #FFFFFF;
+    }
+
+    .struct-step-box {
+      padding: clamp(10px, 1.6vh, 18px) clamp(12px, 1.4vw, 18px);
+      border-radius: 6px;
+      font-size: clamp(0.86rem, 1.22vw, 1.1rem);
+      line-height: 1.4;
+      color: #222222;
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .struct-step-box.pink-tesis {
+      background-color: var(--pink-deductiva);
+      border-left: 4px solid #E57373;
+    }
+
+    .struct-step-box.blue-cuerpo {
+      background-color: var(--blue-cuerpo);
+      border-left: 4px solid #42A5F5;
+    }
+
+    /* ==========================================================================
+       SLIDES 19 & 20: ACTIVIDADES DOSSIER (TARJETA GRIS AZULADA + ESCHER)
+       ========================================================================== */
+    .dossier-card-slate {
+      background-color: var(--card-slate);
+      color: var(--navy-primary);
+      border-radius: 36px;
+      padding: clamp(24px, 4.5vh, 48px) clamp(24px, 3vw, 44px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center !important;
+      box-shadow: var(--shadow-lg);
+      border: 3px solid rgba(9, 57, 84, 0.25);
+      flex: 1.15;
+      height: 82%;
+      margin: auto 0;
+    }
+
+    .dossier-card-slate h2 {
+      font-family: var(--font-body);
+      font-size: clamp(1.6rem, 2.8vw, 2.5rem);
+      color: var(--navy-primary);
+      text-align: center !important;
+      flex-shrink: 0;
+    }
+
+    .dossier-card-slate .dossier-nums {
+      font-family: var(--font-body);
+      font-size: clamp(1.5rem, 2.6vw, 2.35rem);
+      color: var(--navy-primary);
+      font-weight: 500;
+      text-align: center !important;
+      margin: auto 0;
+    }
+
+    /* ==========================================================================
+       BARRA INFERIOR DE NAVEGACIÓN
+       ========================================================================== */
+    .bottom-bar {
+      height: 44px;
+      min-height: 44px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-top: 1.5px solid var(--border-warm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 clamp(14px, 2.2vw, 32px);
+      position: relative;
+      z-index: 50;
+      flex-shrink: 0;
+    }
+
+    .progress-track {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(9, 57, 84, 0.12);
+      cursor: pointer;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 5%;
+      background: linear-gradient(90deg, var(--navy-primary), var(--terracotta-accent), var(--hl-red));
+      transition: width 0.25s ease;
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-arrow-btn {
+      background: var(--navy-primary);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.18s ease;
+    }
+
+    .nav-arrow-btn:hover:not(:disabled) {
+      background: var(--terracotta-accent);
+      transform: translateY(-1px);
+    }
+
+    .nav-arrow-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .slide-counter-pill {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--navy-primary);
+      min-width: 90px;
+      text-align: center;
+    }
+
+    .hint-bar-text {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       MODAL DE AMPLIACIÓN DE TARJETAS Y TABLAS
+       ========================================================================== */
+    .card-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 57, 84, 0.72);
+      backdrop-filter: blur(6px);
+      z-index: 300;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(16px, 3vw, 40px);
+      cursor: zoom-out;
+    }
+
+    .card-modal-overlay.active {
+      display: flex;
+    }
+
+    .card-modal-box {
+      background: #FFFFFF;
+      border: 3px solid var(--card-terracotta);
+      border-left: 10px solid var(--navy-primary);
+      border-radius: 18px;
+      max-width: 960px;
+      width: 94%;
+      max-height: 88vh;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      animation: modalPop 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes modalPop {
+      from { opacity: 0; transform: scale(0.92); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .card-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--bg-parchment);
+      border: 1.5px solid var(--border-warm);
+      color: var(--navy-primary);
+      font-size: 1.35rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: all 0.18s ease;
+    }
+
+    .card-modal-close:hover {
+      background: var(--hl-red);
+      color: #FFFFFF;
+      border-color: var(--hl-red);
+      transform: scale(1.08);
+    }
+
+    .card-modal-body {
+      padding: clamp(24px, 3.8vh, 42px) clamp(24px, 3.5vw, 46px);
+      overflow-y: auto;
+      font-size: clamp(1.1rem, 1.55vw, 1.42rem);
+      line-height: 1.62;
+      color: var(--navy-primary);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 260px;
+    }
+
+    .card-modal-body p,
+    .card-modal-body li,
+    .card-modal-body .star-item {
+      font-size: clamp(1.1rem, 1.5vw, 1.38rem) !important;
+      line-height: 1.62 !important;
+      color: var(--navy-primary);
+      text-align: justify;
+    }
+
+    .card-modal-body .ambito-heading {
+      font-size: clamp(1.3rem, 1.9vw, 1.7rem) !important;
+      margin-bottom: 14px;
+    }
+
+    .card-modal-body .orig-table th,
+    .card-modal-body .orig-table td {
+      font-size: clamp(0.95rem, 1.25vw, 1.15rem) !important;
+      padding: 10px 14px !important;
+      line-height: 1.45 !important;
+    }
+
+    .card-modal-body .arg-statement-box {
+      font-size: clamp(1.2rem, 1.7vw, 1.55rem) !important;
+      padding: 22px !important;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .card-modal-body .arg-answer-box {
+      font-size: clamp(1.15rem, 1.6vw, 1.45rem) !important;
+      padding: 16px !important;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .card-modal-footer {
+      padding: 8px 20px;
+      background: var(--bg-parchment);
+      border-top: 1px solid var(--border-warm);
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--brown-meta);
+    }
+
+    /* ==========================================================================
+       LIGHTBOX DE IMÁGENES
+       ========================================================================== */
+    .lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 25, 38, 0.9);
+      backdrop-filter: blur(6px);
+      z-index: 350;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      cursor: zoom-out;
+    }
+
+    .lightbox-overlay.active {
+      display: flex;
+    }
+
+    .lightbox-img {
+      max-width: 92vw;
+      max-height: 84vh;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #FFFFFF;
+      padding: 6px;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-caption {
+      margin-top: 10px;
+      color: #FBF6EE;
+      font-family: var(--font-heading);
+      font-size: 0.92rem;
+      background: rgba(9, 57, 84, 0.85);
+      padding: 4px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--card-terracotta);
+    }
+
+    /* ==========================================================================
+       CAJÓN DE ÍNDICE DE LAS 20 DIAPOSITIVAS
+       ========================================================================== */
+    .index-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 57, 84, 0.65);
+      backdrop-filter: blur(5px);
+      z-index: 250;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .index-modal-overlay.active {
+      display: flex;
+    }
+
+    .index-drawer {
+      background: #FFFFFF;
+      width: 92%;
+      max-width: 980px;
+      max-height: 84vh;
+      border-radius: 16px;
+      border: 2px solid var(--card-terracotta);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .index-drawer-header {
+      padding: 14px 22px;
+      background: var(--navy-primary);
+      color: #FFFFFF;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .index-drawer-header h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+    }
+
+    .index-drawer-grid {
+      padding: 18px 22px;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px;
+    }
+
+    .index-item-btn {
+      padding: 9px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border-soft);
+      background: var(--card-bg-warm);
+      color: var(--navy-primary);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      text-align: left;
+      transition: all 0.16s ease;
+    }
+
+    .index-item-btn:hover {
+      background: var(--card-terracotta-soft);
+      border-color: var(--terracotta-accent);
+      transform: translateY(-1px);
+    }
+
+    .index-item-btn.current {
+      background: var(--navy-primary);
+      color: #FFFFFF;
+      border-color: var(--navy-primary);
+    }
+
+    .index-item-num {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      color: var(--terracotta-accent);
+      min-width: 24px;
+    }
+
+    .index-item-btn.current .index-item-num {
+      color: var(--card-terracotta);
+    }
+
+    /* ==========================================================================
+       DISEÑO RESPONSIVE PARA MÓVILES, TABLETS Y DIFERENTES PANTALLAS
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .header-pills {
+        display: none;
+      }
+      .cover-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .cover-grid .pane-image {
+        grid-column: span 2;
+        max-height: 220px;
+      }
+    }
+
+    @media (max-width: 820px) {
+      html, body {
+        overflow-y: auto;
+        height: auto;
+        min-height: 100vh;
+      }
+      .app-viewport {
+        height: auto;
+        min-height: 100vh;
+      }
+      .slide-stage {
+        height: auto;
+        min-height: calc(100vh - 90px);
+        overflow: visible;
+      }
+      .slide {
+        position: relative;
+        display: none;
+        height: auto;
+        min-height: calc(100vh - 90px);
+        overflow: visible;
+      }
+      .slide.active {
+        display: flex;
+      }
+      .slide-body,
+      .cover-grid,
+      .ambitos-grid-2x2,
+      .rasgos-grid-4x2,
+      .rasgos-ejemplo-layout,
+      .quiz-grid-5x2,
+      .structure-cols-3 {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+      }
+      .pane-image {
+        max-height: 240px;
+      }
+      .hint-bar-text {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-viewport" id="appViewport">
+
+  <!-- BARRA SUPERIOR -->
+  <header class="top-header">
+    <div class="header-left">
+      <span class="brand-badge">4º ESO · TEMA 2</span>
+      <span class="brand-title">LA ARGUMENTACIÓN</span>
+    </div>
+
+    <div class="header-actions">
+      <button class="ctrl-btn" onclick="adjustFont(-0.08)" title="Reducir tamaño de texto">A-</button>
+      <button class="ctrl-btn" onclick="adjustFont(0.08)" title="Aumentar tamaño de texto">A+</button>
+      <button class="ctrl-btn" onclick="toggleIndexModal()" title="Índice de diapositivas (Tecla M)">☰ Índice</button>
+      <button class="ctrl-btn" id="fullscreenBtn" onclick="toggleFullscreen()" title="Pantalla Completa (Tecla F)">⛶ Pantalla Completa</button>
+    </div>
+  </header>
+
+  <!-- ESCENARIO PRINCIPAL DE DIAPOSITIVAS -->
+  <main class="slide-stage" id="slideStage">
+
+    <!-- ========================================================================
+         DIAPOSITIVA 1: CITA LITERARIA + PORTADA
+         ======================================================================== -->
+    <section class="slide active" data-title="Portada: LA ARGUMENTACIÓN">
+      <div class="slide-body">
+        <div class="cover-grid">
+          <!-- Tarjeta de Cita Literaria (sin ampliación) -->
+          <div class="quote-card-inaugural" style="border-left-color: var(--card-terracotta);">
+            <blockquote class="quote-body-text">
+              «Vencer no es convencer, y hay que convencer, sobre todo [...] porque convencer significa persuadir. Y para persuadir necesitáis algo que os falta: razón y derecho.»
+            </blockquote>
+            <div class="quote-author-footer">
+              — Miguel de Unamuno (1936)
+            </div>
+          </div>
+
+          <!-- Tarjeta de Portada Original (sin ampliación) -->
+          <div class="cover-center-card">
+            <span class="cover-unit-tag">TEMA 2 · PIENSO, LUEGO EXISTO (2.1)</span>
+            <h1 class="cover-main-heading">LA<br>ARGUMENTACIÓN</h1>
+            <div>
+              <div class="cover-meta-block">
+                <span>IES TORRE DEL REI</span>
+                <span>Prof. Nuria Ribés</span>
+              </div>
+              <button class="start-presentation-btn" onclick="nextSlide()">
+                <span>Comenzar presentación</span>
+                <span>➜</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         DIAPOSITIVA 2: ¿QUÉ ES LA ARGUMENTACIÓN? (DEFINICIÓN, OBJETIVO Y CONTEXTO)
+         ======================================================================== -->
+    <section class="slide" data-title="¿QUÉ ES LA ARGUMENTACIÓN? (Definición y objetivos)">
+      <div class="slide-header">
+        <h2 class="slide-title">¿QUÉ ES LA ARGUMENTACIÓN?</h2>
+        <span class="slide-subtitle-badge">Definición · Objetivo · Contextos</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="justify-content: center; gap: 4px;">
+          <!-- Nivel 1: Caja terracota igual al original (girada inicialmente) -->
+          <div class="flip-card-s2" style="flex: 1;">
+            <div class="flip-card-s2-inner">
+              <div class="flip-card-s2-front expandable-card terracotta-box">
+                <p>La argumentación consiste en <strong>aportar razones</strong> que demuestren la falsedad o la certeza de una opinión, de un hecho o de una idea.</p>
+              </div>
+              <div class="flip-card-s2-back">
+                <span class="flip-back-badge">1</span>
+                <span class="flip-back-icon">↻</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flecha jerárquica 1 -->
+          <div class="flow-arrow-down" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M9 3h6v9h4l-7 9-7-9h4z"/></svg>
+          </div>
+
+          <!-- Nivel 2: Objetivo doble (girada inicialmente) -->
+          <div class="flip-card-s2" style="flex: 1;">
+            <div class="flip-card-s2-inner">
+              <div class="flip-card-s2-front expandable-card warm-tint">
+                <p>El objetivo de la argumentación es doble: <strong>convencer</strong> al receptor de una idea y <strong>persuadirlo</strong> para que adopte un determinado comportamiento.</p>
+              </div>
+              <div class="flip-card-s2-back">
+                <span class="flip-back-badge">2</span>
+                <span class="flip-back-icon">↻</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flecha jerárquica 2 -->
+          <div class="flow-arrow-down" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M9 3h6v9h4l-7 9-7-9h4z"/></svg>
+          </div>
+
+          <!-- Nivel 3: Contexto informal y formal (girada inicialmente) -->
+          <div class="flip-card-s2" style="flex: 1.15;">
+            <div class="flip-card-s2-inner">
+              <div class="flip-card-s2-front expandable-card">
+                <p>La argumentación puede darse en un contexto <strong>informal</strong>, como por ejemplo, una conversación entre amigos; o en un contexto <strong>formal</strong>, por ejemplo, cuando un periodista da su opinión en un medio de información sobre un hecho actual.</p>
+              </div>
+              <div class="flip-card-s2-back">
+                <span class="flip-back-badge">3</span>
+                <span class="flip-back-icon">↻</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pane-image">
+          <img src="media/ilustracion_que_es.jpg" alt="Diálogo argumentativo en contextos formales e informales">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         DIAPOSITIVA 3: ¿QUÉ ES LA ARGUMENTACIÓN? (DOS TEXTOS COMPARADOS)
+         ======================================================================== -->
+    <section class="slide" data-title="¿QUÉ ES LA ARGUMENTACIÓN? (Textos de análisis)">
+      <div class="slide-header">
+        <h2 class="slide-title">¿QUÉ ES LA ARGUMENTACIÓN?</h2>
+        <span class="slide-subtitle-badge">Textos de análisis</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 2.15;">
+          <!-- Texto 1: Luis Rojas Marcos -->
+          <div class="expandable-card excerpt-card">
+            <p>Hoy está demostrado que el humor facilita la descarga de la tensión emocional y nos hace resistentes al estrés. Una dosis adecuada de gracia y ocurrencia, además de facilitar un reconfortante y terapéutico distanciamiento psicológico de la situación que nos amenaza y abruma, también es una excelente herramienta para conectarnos con los demás.</p>
+            <p class="excerpt-citation">Luis Rojas Marcos: <em>Superar la adversidad</em> (adaptación). Ed. Espasa, 2011.</p>
+          </div>
+
+          <!-- Texto 2: J. C. Martínez Coll -->
+          <div class="expandable-card excerpt-card" style="border-left-color: var(--terracotta-accent);">
+            <p>La longevidad es la duración de la vida de una persona. Se mide mediante el concepto de esperanza de vida. La esperanza de vida es la media de la duración de la vida de una persona.</p>
+            <p class="excerpt-citation">J. C. Martínez Coll: "Demografía" (adaptación), en <em>La economía de mercado, virtudes e inconvenientes,</em> 23 de mayo de 2007, <em>Eumed.net.</em> Web [Consulta: 24 de noviembre de 2020].</p>
+          </div>
+        </div>
+
+        <div class="pane-image" style="flex: 0.44; max-height: 75%; margin: auto 0;">
+          <img src="media/ilustracion_textos_comparados.jpg" alt="Ilustración sobre el humor y la longevidad">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         DIAPOSITIVA 4: ¿DÓNDE ENCONTRAMOS TEXTOS ARGUMENTATIVOS?
+         ======================================================================== -->
+    <section class="slide" data-title="¿DÓNDE ENCONTRAMOS TEXTOS ARGUMENTATIVOS?">
+      <div class="slide-header">
+        <h2 class="slide-title">¿DÓNDE ENCONTRAMOS TEXTOS ARGUMENTATIVOS?</h2>
+        <span class="slide-subtitle-badge">Variedad y forma</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 2.15; justify-content: space-evenly;">
+          <div class="expandable-card warm-tint" style="flex: 1;">
+            <p>Podemos encontrar una <strong>gran variedad de textos argumentativos</strong> en los distintos ámbitos de uso: conversaciones, debates, textos académicos…</p>
+          </div>
+
+          <div class="expandable-card" style="flex: 1.15;">
+            <p>La <strong>forma</strong> en la que se concreta la argumentación en cada ámbito es muy diferente porque se debe tener en cuenta el emisor, el destinatario y el modo en que se realiza el acto de comunicación.</p>
+          </div>
+        </div>
+
+        <div class="pane-image" style="flex: 0.44; max-height: 75%; margin: auto 0;">
+          <img src="media/image10.png" alt="M. C. Escher - Relatividad">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         DIAPOSITIVA 5: ÁMBITOS DE USO
+         ======================================================================== -->
+    <section class="slide" data-title="ÁMBITOS DE USO">
+      <div class="slide-header">
+        <h2 class="slide-title">ÁMBITOS DE USO</h2>
+        <span class="slide-subtitle-badge">Personal · Académico · Laboral · Social</span>
+      </div>
+      <div class="slide-body">
+        <div class="ambitos-grid-2x2" style="flex: 2.2;">
+          <div class="expandable-card warm-tint">
+            <div class="ambito-heading"><strong>ÁMBITO PERSONAL</strong></div>
+            <p>Podemos encontrar argumentaciones en el ámbito personal en diálogos entre amigos o familiares, en invitaciones, correos electrónicos…</p>
+          </div>
+
+          <div class="expandable-card">
+            <div class="ambito-heading"><strong>ÁMBITO ACADÉMICO</strong></div>
+            <p>La argumentación en el ámbito académico se encuentra en diálogos, conferencias, comentarios de texto y, especialmente, en ensayos.</p>
+          </div>
+
+          <div class="expandable-card">
+            <div class="ambito-heading"><strong>ÁMBITO LABORAL</strong></div>
+            <p>En los textos propios de la actividad profesional aparece la argumentación, frecuentemente combinada con la exposición, en informes, cartas comerciales o ensayos.</p>
+          </div>
+
+          <div class="expandable-card warm-tint">
+            <div class="ambito-heading"><strong>ÁMBITO SOCIAL</strong></div>
+            <p>Es aquí donde la argumentación tiene mayor frecuencia, ya que en esta clase de textos se pretende que el destinatario adopte el punto de vista defendido o modifique su conducta. Se emplea en discursos públicos, debates, foros, anuncios publicitarios…</p>
+          </div>
+        </div>
+
+        <div class="pane-image" style="flex: 0.42; max-height: 74%; margin: auto 0;">
+          <img src="media/ilustracion_ambitos.jpg" alt="Mosaico de los cuatro ámbitos de uso de la argumentación">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         DIAPOSITIVA 6: ¿LA ARGUMENTACIÓN ES OBJETIVA O SUBJETIVA?
+         ======================================================================== -->
+    <section class="slide" data-title="¿LA ARGUMENTACIÓN ES OBJETIVA O SUBJETIVA?">
+      <div class="slide-header">
+        <h2 class="slide-title">¿LA ARGUMENTACIÓN ES OBJETIVA O SUBJETIVA?</h2>
+        <span class="slide-subtitle-badge">Punto de vista del autor</span>
+      </div>
+      <div class="slide-body" style="flex-direction: column; justify-content: space-between; gap: clamp(6px, 1vh, 10px);">
+        <div class="expandable-card" style="padding: clamp(6px, 1vh, 11px) clamp(12px, 1.5vw, 18px);">
+          <p>Según el punto de vista del autor, podemos encontrar argumentaciones subjetivas u objetivas.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 0.92fr 1.08fr; gap: clamp(8px, 1.3vw, 16px); flex: 1; min-height: 0;">
+          <div class="expandable-card red-accent">
+            <p>Las argumentaciones sobre <span class="hl-red"><strong>temas científicos</strong></span> suelen ser <strong>objetivas</strong>, porque los razonamientos y los datos que se utilizan, así como las conclusiones, se pueden comprobar experimentalmente.</p>
+          </div>
+
+          <div class="expandable-card red-accent">
+            <p>En cambio, cuando se quiere defender una tesis relacionada con <span class="hl-red"><strong>la ética, la filosofía, la política, el arte, etc.</strong></span>, los argumentos y las conclusiones que se esgrimen se mueven en el terreno de unas <span class="hl-red"><strong>opiniones</strong></span>, <span class="hl-red"><strong>creencias</strong></span>, <span class="hl-red"><strong>conceptos abstractos o sentimientos</strong></span> que no se pueden demostrar experimentalmente con una prueba definitiva o concluyente. Se trata de <span class="hl-red"><strong>argumentos</strong></span> y <span class="hl-red"><strong>conclusiones posibles</strong></span> o <span class="hl-red"><strong>probables</strong></span>. Por eso, este tipo de argumentación es <strong>subjetiva</strong>.</p>
+          </div>
+        </div>
+
+        <!-- Tabla resumen inferior idéntica al original -->
+        <div class="comp-table-wrap" style="flex-shrink: 0;">
+          <table class="orig-table lime-theme">
+            <tbody>
+              <tr>
+                <td class="col-label" style="vertical-align: middle;"><strong>Objetiva</strong></td>
+                <td>Se basa en <strong>razonamientos</strong> y <strong>datos empíricos</strong> que se pueden comprobar.</td>
+              </tr>
+              <tr>
+                <td class="col-label" style="vertical-align: middle;"><strong>Subjetiva</strong></td>
+                <td>Se fundamenta en <strong>opiniones</strong>, <strong>prejuicios</strong>, <strong>sentimientos</strong>, <strong>creencias</strong>, etc.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         DIAPOSITIVA 7: RASGOS LINGÜÍSTICOS Y EJEMPLO
+         ======================================================================== -->
+    <section class="slide" data-title="RASGOS LINGÜÍSTICOS">
+      <div class="slide-header">
+        <h2 class="slide-title">RASGOS LINGÜÍSTICOS</h2>
+        <div class="rasgos-tabs-bar" role="tablist">
+          <button class="rasgos-tab-btn active" id="rasgosTabTeoria" onclick="setRasgosView(0)">1. Rasgos lingüísticos</button>
+          <button class="rasgos-tab-btn" id="rasgosTabEjemplo" onclick="setRasgosView(1)">2. Ejemplo analizado</button>
+        </div>
+      </div>
+      <div class="slide-body">
+        <!-- VISTA 1: Rasgos lingüísticos (8 tarjetas) -->
+        <div class="rasgos-view-panel active" id="rasgosPanel0">
+          <div class="rasgos-grid-4x2">
+            <div class="expandable-card warm-tint">
+              <div class="ambito-heading"><strong>Primera persona.</strong></div>
+              <p>El autor se manifiesta a través de la primera persona del singular (<em>consider<u>o</u>, en <u>mi</u> opinión</em>) o del plural (<em>cre<u>emos</u>, <u>nuestro</u> planteamiento</em>). No obstante, el uso de la tercera persona es habitual en los argumentos y en las partes más expositivas.</p>
+            </div>
+
+            <div class="expandable-card">
+              <div class="ambito-heading"><strong>Apelaciones al destinatario.</strong></div>
+              <p>Para involucrar al receptor, el autor puede recurrir a mecanismos como la segunda persona (<em>tú</em> o <em>usted</em>) o la primera del plural (<em>vivimos</em>), verbos en imperativo (<em>pensad</em>), vocativos (<em>apreciado lector</em>) o la modalidad interrogativa, entre otros.</p>
+            </div>
+
+            <div class="expandable-card">
+              <div class="ambito-heading"><strong>Vocabulario valorativo.</strong></div>
+              <p>El enfoque subjetivo se plasma, sobre todo, en adjetivos calificativos (<em>necesario, grave</em>) y sustantivos de significado positivo (<em>oportunidad, ventajas</em>) o negativo (<em>perjuicio, crisis</em>).</p>
+            </div>
+
+            <div class="expandable-card warm-tint">
+              <div class="ambito-heading"><strong>Recursos estilísticos.</strong></div>
+              <p>El texto se vuelve más expresivo gracias a recursos como la metáfora (<em>las noticias falsas son un <u>virus</u> muy contagioso</em>) o la pregunta retórica (<em>¿Estarían los menores más seguros si no pudieran acceder a las redes sociales?</em>).</p>
+            </div>
+
+            <div class="expandable-card warm-tint">
+              <div class="ambito-heading"><strong>Verbos de pensamiento, de lengua o de voluntad.</strong></div>
+              <p><strong>Verbos de pensamiento</strong> (<em>creer, pensar</em>), de <strong>lengua</strong> (<em>afirmar, negar</em>) o de <strong>voluntad</strong> (<em>desear, pretender</em>). Suelen introducir las opiniones y los argumentos.</p>
+            </div>
+
+            <div class="expandable-card">
+              <div class="ambito-heading"><strong>Perífrasis verbales de posibilidad o de obligación.</strong></div>
+              <p><strong>Perífrasis verbales de posibilidad</strong> (<em>puede ocurrir</em>) o <strong>de obligación</strong> (<em>debemos solucionar</em>) para indicar la actitud del autor (duda, seguridad...).</p>
+            </div>
+
+            <div class="expandable-card">
+              <div class="ambito-heading"><strong>Oraciones compuestas.</strong></div>
+              <p><strong>Oraciones compuestas</strong> por coordinación y, sobre todo, por subordinación para desarrollar el razonamiento necesario en cualquier argumentación.</p>
+            </div>
+
+            <div class="expandable-card warm-tint">
+              <div class="ambito-heading"><strong>Conectores textuales.</strong></div>
+              <p><strong>Conectores textuales</strong> para unir las partes del texto (<em>sin embargo, además, por tanto</em>), introducir el tema (<em>en cuanto a..., respecto a...</em>) o presentar la opinión (<em>en mi opinión, a mi modo de ver, desde mi punto de vista</em>).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- VISTA 2: Ejemplo de rasgos lingüísticos analizado -->
+        <div class="rasgos-view-panel" id="rasgosPanel1">
+          <div class="rasgos-ejemplo-layout">
+            <div class="expandable-card rasgos-ejemplo-text-card" id="rasgosEjemploTextCard">
+              <p><span class="r-hl r-p1pl">Estamos</span> demasiado acostumbrados a ver a jóvenes (y no tan jóvenes) concentrados en sus <em>smartphones</em> durante una reunión social, una comida familiar o incluso en el gimnasio. <span class="r-hl r-p1pl">Aceptamos</span> este aislamiento tecnológico como algo plenamente normalizado en nuestra sociedad. <span class="r-hl r-conector">Pero</span> <span class="r-hl r-retorica">¿es <span class="r-hl r-valorativo">sano</span> este comportamiento?</span> <span class="r-hl r-apelacion">¿Se han planteado alguna vez cuántas horas al día seríamos capaces de estar sin móvil?</span> Algunos, por lo que se ve, muy pocas.</p>
+
+              <p>No <span class="r-hl r-verbo">discuto</span> que los móviles e internet sean <span class="r-hl r-valorativo">verdaderos adelantos</span> que <span class="r-hl r-p1pl">nos</span> ayudan en el día a día y nos permiten realizar numerosas tareas de forma rápida y fácil. <span class="r-hl r-conector">Sin embargo</span>, <span class="r-hl r-verbo">creo</span> que <span class="r-hl r-p1pl">dependemos</span> en exceso de ellos y <span class="r-hl r-p1pl">descuidamos</span> la relación directa con las personas y con <span class="r-hl r-p1pl">nuestro</span> entorno. <span class="r-hl r-conector">Por ello</span>, <span class="r-hl r-perifrasis">deberíamos plantearnos</span> la <span class="r-hl r-valorativo">necesidad</span> de hacer un descanso tecnológico diario y, sobre todo, de las redes sociales, que tanta influencia ejercen sobre <span class="r-hl r-p1pl">nosotros</span>. <span class="r-hl r-compuesta">Esta excesiva dependencia tiene efectos negativos en los más jóvenes, pues está haciendo que no se centren en cosas tan importantes como socializar de forma sana, aficionarse a la lectura (muchos descubrirían que les aporta más placer que las redes sociales) o, simplemente, dedicarse a otras actividades que les reporten la tranquilidad o la estabilidad mental que tanto buscamos.</span></p>
+
+              <p>Estar más de una hora sin conectarnos a la red es un <span class="r-hl r-valorativo">reto necesario</span>. <span class="r-hl r-conector">Por tanto</span>, <span class="r-hl r-perifrasis">hemos de tomar</span> conciencia de esta <span class="r-hl r-valorativo">dependencia</span> para hacer un uso más saludable de la tecnología.</p>
+            </div>
+
+            <div class="rasgos-legend-card expandable-card" style="border-left-color: var(--terracotta-accent);">
+              <ul class="rasgos-legend-list">
+                <li class="rasgos-legend-item" onclick="filterRasgosCategory(event, 'r-p1pl')">
+                  <span class="legend-swatch swatch-p1pl"></span>
+                  <span>Primera persona del plural (para involucrar al receptor)</span>
+                </li>
+                <li class="rasgos-legend-item" onclick="filterRasgosCategory(event, 'r-compuesta')">
+                  <span class="legend-swatch swatch-compuesta"></span>
+                  <span>Oración compuesta</span>
+                </li>
+                <li class="rasgos-legend-item" onclick="filterRasgosCategory(event, 'r-perifrasis')">
+                  <span class="legend-swatch swatch-perifrasis"></span>
+                  <span>Perífrasis verbales</span>
+                </li>
+                <li class="rasgos-legend-item" onclick="filterRasgosCategory(event, 'r-apelacion')">
+                  <span class="legend-swatch swatch-apelacion"></span>
+                  <span>Apelaciones al destinatario</span>
+                </li>
+                <li class="rasgos-legend-item" onclick="filterRasgosCategory(event, 'r-verbo')">
+                  <span class="legend-swatch swatch-verbo"></span>
+                  <span>Verbos de pensamiento y de lengua</span>
+                </li>
+                <li class="rasgos-legend-item" onclick="filterRasgosCategory(event, 'r-retorica')">
+                  <span class="legend-swatch swatch-retorica"></span>
+                  <span>Pregunta retórica</span>
+                </li>
+                <li class="rasgos-legend-item" onclick="filterRasgosCategory(event, 'r-valorativo')">
+                  <span class="legend-swatch swatch-valorativo"></span>
+                  <span>Vocabulario valorativo</span>
+                </li>
+                <li class="rasgos-legend-item" onclick="filterRasgosCategory(event, 'r-conector')">
+                  <span class="legend-swatch swatch-conector"></span>
+                  <span>Conectores textuales</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         DIAPOSITIVA 8: EL TEMA Y LA TESIS (CONCEPTO)
+         ======================================================================== -->
+    <section class="slide" data-title="EL TEMA Y LA TESIS">
+      <div class="slide-header">
+        <h2 class="slide-title">EL TEMA Y LA TESIS</h2>
+        <span class="slide-subtitle-badge">¿De qué trata? vs. ¿Qué punto de vista defiende?</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="justify-content: space-between;">
+          <div class="expandable-card red-accent" style="flex: 1;">
+            <p>En una argumentación, el <span class="hl-red"><strong>tema</strong></span> responde a la pregunta <span class="hl-red"><strong>¿de qué trata el texto?</strong></span> Por ejemplo, la gestión del agua.</p>
+          </div>
+
+          <div class="expandable-card blue-accent" style="flex: 1;">
+            <p>Sin embargo, la <span class="hl-blue"><strong>tesis</strong></span> responde a la pregunta <span class="hl-blue"><strong>¿cuál es el punto de vista que se defiende acerca del tema?</strong></span></p>
+          </div>
+
+          <div class="expandable-card warm-tint" style="flex: 1.05;">
+            <p>Sobre el tema planteado podríamos establecer, por ejemplo, dos tesis: <em>Es preferible que el agua sea gestionada por empresas públicas/por empresas privadas.</em></p>
+          </div>
+        </div>
+
+        <div class="pane-image">
+          <img src="media/ilustracion_tema_tesis.jpg" alt="Ilustración de Tema y Tesis sobre la gestión del agua">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         DIAPOSITIVA 9: EL TEMA Y LA TESIS (TEXTO PRÁCTICO PHUBBING)
+         ======================================================================== -->
+    <section class="slide" data-title="EL TEMA Y LA TESIS (Práctica)">
+      <div class="slide-header">
+        <h2 class="slide-title">EL TEMA Y LA TESIS</h2>
+        <span class="slide-subtitle-badge">Análisis práctico</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.4;">
+          <div class="expandable-card warm-tint" style="flex: 0 0 auto; padding: clamp(8px, 1.3vh, 14px) clamp(14px, 1.8vw, 22px);">
+            <p><strong>¿Sabes diferenciar el <span class="hl-red">tema</span> de la <span class="hl-blue">tesis</span> de este texto?</strong></p>
+          </div>
+
+          <div class="expandable-card" style="flex: 1; justify-content: space-evenly;">
+            <p>Aunque los teléfonos inteligentes nos conectan a distancia, su uso excesivo está empobreciendo la comunicación cara a cara. Al interactuar a través de una pantalla, perdemos matices vitales como el lenguaje no verbal o el tono de voz, lo que nos hace menos hábiles para interpretar las emociones de los demás.</p>
+            <p>Además, la práctica del <em>phubbing</em> —ignorar a alguien por atender el móvil— devalúa la interacción presente y debilita los lazos personales. Esto nos lleva a la paradoja de estar más conectados, pero más solos. Es crucial usar la tecnología de forma consciente para no sacrificar la autenticidad de nuestras relaciones directas.</p>
+          </div>
+        </div>
+
+        <div class="pane-image" style="flex: 0.75;">
+          <img src="media/ilustracion_phubbing.jpg" alt="Ilustración sobre el uso excesivo de teléfonos inteligentes y el phubbing">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         DIAPOSITIVA 10: TIPOS DE ARGUMENTOS (DEFINICIÓN Y REFUTACIÓN)
+         ======================================================================== -->
+    <section class="slide" data-title="TIPOS DE ARGUMENTOS (Argumentos y refutación)">
+      <div class="slide-header">
+        <h2 class="slide-title">TIPOS DE ARGUMENTOS</h2>
+        <span class="slide-subtitle-badge">Argumentos · Refutación · Contraargumentos</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="justify-content: space-evenly;">
+          <div class="expandable-card warm-tint" style="flex: 1;">
+            <p>Los argumentos es el <strong>conjunto de razonamientos</strong>, datos, pruebas… con los que defendemos una tesis.</p>
+          </div>
+
+          <div class="expandable-card" style="flex: 1.15;">
+            <p>Si lo que pretendemos es demostrar que la tesis es <strong>falsa</strong>, estamos realizando una <strong>refutación</strong>, y en este caso los argumentos que utilicemos se denominan <strong>objeciones o contraargumentos.</strong></p>
+          </div>
+        </div>
+
+        <div class="pane-image">
+          <img src="media/image13.png" class="no-blend" alt="Ilustración de diálogo y clarificación de argumentos">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         DIAPOSITIVA 11: TIPOS DE ARGUMENTOS (TABLA COMPLETA)
+         ======================================================================== -->
+    <section class="slide" data-title="TIPOS DE ARGUMENTOS (Clasificación y ejemplos)">
+      <div class="slide-header">
+        <h2 class="slide-title">TIPOS DE ARGUMENTOS</h2>
+        <span class="slide-subtitle-badge"><strong>Hecho · Autoridad · Ejemplo · Creencia general · Utilidad · Analogía · Experiencia personal</strong></span>
+      </div>
+      <div class="slide-body">
+        <div class="comp-table-wrap" style="flex: 1; height: 100%; border-color: #820048;">
+          <table class="orig-table burgundy-theme">
+            <thead>
+              <tr>
+                <th style="width: 15%;"><strong>Argumento</strong></th>
+                <th style="width: 30%;"><strong>Definición</strong></th>
+                <th style="width: 55%;"><strong>Ejemplo</strong></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="col-label"><strong>Hecho</strong></td>
+                <td>Datos o hechos probados</td>
+                <td><em>El 30 % del alumnado que concluye la Educación Secundaria Obligatoria estudia Formación Profesional, frente al 48 % de la media europea</em> (argumento). <em>En España no se valoran adecuadamente las enseñanzas profesionales</em> (opinión).</td>
+              </tr>
+              <tr>
+                <td class="col-label"><strong>Autoridad</strong></td>
+                <td>Opinión de personas o instituciones expertas en el tema</td>
+                <td><em>De todos los objetivos de la Agenda 2030, el más importante para mí es el de la educación</em> (opinión). <em>Como afirmó la Premio Nobel de la Paz Malala Yousafzai, “un niño, un profesor, un libro y un lápiz pueden cambiar el mundo”</em> (argumento).</td>
+              </tr>
+              <tr>
+                <td class="col-label"><strong>Ejemplo</strong></td>
+                <td>Demostración de una idea general a partir de un caso concreto</td>
+                <td><em>¿Y si organizamos un torneo de debate en 4.º?</em> (opinión). <em>Los alumnos de Bachillerato participaron en uno y estuvieron muy motivados con la actividad</em> (argumento).</td>
+              </tr>
+              <tr>
+                <td class="col-label"><strong>Creencia general</strong></td>
+                <td>Ideas aceptadas por la sociedad (refranes, tópicos...)</td>
+                <td><em>No te desanimes y sigue trabajando con ilusión</em> (opinión). <em>Quien se esfuerza siempre acaba obteniendo resultados</em> (argumento).</td>
+              </tr>
+              <tr>
+                <td class="col-label"><strong>Utilidad</strong></td>
+                <td>Mención de las consecuencias, positivas o negativas, de una acción</td>
+                <td><em>Te recomiendo que te prepares con tiempo los exámenes</em> (opinión); <em>de este modo, asimilarás bien los contenidos y llegarás a la prueba menos nervioso</em> (argumento).</td>
+              </tr>
+              <tr>
+                <td class="col-label"><strong>Analogía</strong></td>
+                <td>Comparación de dos situaciones parecidas</td>
+                <td><em>Debemos prohibir los móviles en clase</em> (opinión). <em>No se puede seguir una explicación si se está con el teléfono, como tampoco se puede estudiar viendo la tele</em> (argumento).</td>
+              </tr>
+              <tr>
+                <td class="col-label"><strong>Experiencia personal</strong></td>
+                <td>Vivencia del propio emisor</td>
+                <td><em>No te agobies si aún no tienes una vocación profesional clara</em> (opinión). <em>A tu edad, me pasaba lo mismo y con el tiempo fui descubriendo a qué quería dedicarme</em> (argumento).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         DIAPOSITIVA 12: ¿QUÉ TIPOS DE ARGUMENTOS SON? (10 EJEMPLOS NUMERADOS)
+         ======================================================================== -->
+    <section class="slide" data-title="¿QUÉ TIPOS DE ARGUMENTOS SON?">
+      <div class="slide-header" style="flex-direction: column; align-items: flex-start; gap: 2px;">
+        <div style="display: flex; width: 100%; justify-content: space-between; align-items: center;">
+          <h2 class="slide-title"><strong>¿QUÉ TIPOS DE ARGUMENTOS SON?</strong></h2>
+          <span class="slide-subtitle-badge"><strong>Hecho · Autoridad · Ejemplo · Creencia general · Utilidad · Analogía · Experiencia personal</strong></span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="quiz-grid-5x2">
+          <!-- Ejemplo 1 -->
+          <div class="expandable-card warm-tint">
+            <div class="ambito-heading"><strong>1.</strong></div>
+            <p>Según el INE, los adolescentes pasan más de cuatro horas diarias frente a las pantallas. Es necesario fomentar un ocio más activo.</p>
+            <div class="arg-answer-box hidden-answer">
+              <button class="reveal-pill-btn" onclick="revealSingleAnswer(event, this)">🔍 Ver respuesta</button>
+              <span class="answer-label">Argumento de hecho</span>
+            </div>
+          </div>
+
+          <!-- Ejemplo 2 -->
+          <div class="expandable-card">
+            <div class="ambito-heading"><strong>2.</strong></div>
+            <p>Debemos cuidar el descanso nocturno. Como señala la Organización Mundial de la Salud, dormir entre ocho y diez horas es clave en la adolescencia.</p>
+            <div class="arg-answer-box hidden-answer">
+              <button class="reveal-pill-btn" onclick="revealSingleAnswer(event, this)">🔍 Ver respuesta</button>
+              <span class="answer-label">Argumento de autoridad</span>
+            </div>
+          </div>
+
+          <!-- Ejemplo 3 -->
+          <div class="expandable-card">
+            <div class="ambito-heading"><strong>3.</strong></div>
+            <p>¿Y si creamos un club de lectura en 4.º de ESO? En el instituto vecino lo pusieron en marcha el curso pasado y tuvo muchísimo éxito.</p>
+            <div class="arg-answer-box hidden-answer">
+              <button class="reveal-pill-btn" onclick="revealSingleAnswer(event, this)">🔍 Ver respuesta</button>
+              <span class="answer-label">Argumento de ejemplo</span>
+            </div>
+          </div>
+
+          <!-- Ejemplo 4 -->
+          <div class="expandable-card warm-tint">
+            <div class="ambito-heading"><strong>4.</strong></div>
+            <p>Conviene empezar hoy mismo el trabajo trimestral; ya sabes que «no dejes para mañana lo que puedas hacer hoy».</p>
+            <div class="arg-answer-box hidden-answer">
+              <button class="reveal-pill-btn" onclick="revealSingleAnswer(event, this)">🔍 Ver respuesta</button>
+              <span class="answer-label">Argumento de creencia general (refrán)</span>
+            </div>
+          </div>
+
+          <!-- Ejemplo 5 -->
+          <div class="expandable-card warm-tint">
+            <div class="ambito-heading"><strong>5.</strong></div>
+            <p>Te aconsejo que hagas un esquema antes de redactar el ensayo; de este modo, ordenarás mejor tus ideas y evitarás repetirte.</p>
+            <div class="arg-answer-box hidden-answer">
+              <button class="reveal-pill-btn" onclick="revealSingleAnswer(event, this)">🔍 Ver respuesta</button>
+              <span class="answer-label">Argumento de utilidad</span>
+            </div>
+          </div>
+
+          <!-- Ejemplo 6 -->
+          <div class="expandable-card">
+            <div class="ambito-heading"><strong>6.</strong></div>
+            <p>Hay que leer a diario para desarrollar el pensamiento crítico. La mente necesita ejercicio para fortalecerse, igual que un deportista necesita entrenar.</p>
+            <div class="arg-answer-box hidden-answer">
+              <button class="reveal-pill-btn" onclick="revealSingleAnswer(event, this)">🔍 Ver respuesta</button>
+              <span class="answer-label">Argumento de analogía</span>
+            </div>
+          </div>
+
+          <!-- Ejemplo 7 -->
+          <div class="expandable-card">
+            <div class="ambito-heading"><strong>7.</strong></div>
+            <p>No tengas miedo de hablar en público en la exposición oral. El curso pasado yo también me ponía nervioso y, tras ensayar en casa, me salió muy bien.</p>
+            <div class="arg-answer-box hidden-answer">
+              <button class="reveal-pill-btn" onclick="revealSingleAnswer(event, this)">🔍 Ver respuesta</button>
+              <span class="answer-label">Argumento de experiencia personal</span>
+            </div>
+          </div>
+
+          <!-- Ejemplo 8 -->
+          <div class="expandable-card warm-tint">
+            <div class="ambito-heading"><strong>8.</strong></div>
+            <p>Mantén la constancia durante todo el curso aunque cueste al principio: todo esfuerzo tiene su recompensa.</p>
+            <div class="arg-answer-box hidden-answer">
+              <button class="reveal-pill-btn" onclick="revealSingleAnswer(event, this)">🔍 Ver respuesta</button>
+              <span class="answer-label">Argumento de creencia general (tópico)</span>
+            </div>
+          </div>
+
+          <!-- Ejemplo 9 -->
+          <div class="expandable-card warm-tint">
+            <div class="ambito-heading"><strong>9.</strong></div>
+            <p>El 78 % de los incendios forestales del último año estuvieron relacionados con negligencias humanas. Es imprescindible reforzar las campañas de prevención.</p>
+            <div class="arg-answer-box hidden-answer">
+              <button class="reveal-pill-btn" onclick="revealSingleAnswer(event, this)">🔍 Ver respuesta</button>
+              <span class="answer-label">Argumento de hecho</span>
+            </div>
+          </div>
+
+          <!-- Ejemplo 10 -->
+          <div class="expandable-card">
+            <div class="ambito-heading"><strong>10.</strong></div>
+            <p>Deberíamos acudir al instituto en bicicleta o caminando siempre que sea posible; así reduciremos la contaminación y mejoraremos nuestra salud.</p>
+            <div class="arg-answer-box hidden-answer">
+              <button class="reveal-pill-btn" onclick="revealSingleAnswer(event, this)">🔍 Ver respuesta</button>
+              <span class="answer-label">Argumento de utilidad</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         DIAPOSITIVA 13: LOS FALSOS ARGUMENTOS
+         ======================================================================== -->
+    <section class="slide" data-title="LOS FALSOS ARGUMENTOS">
+      <div class="slide-header">
+        <h2 class="slide-title">LOS FALSOS ARGUMENTOS</h2>
+        <span class="slide-subtitle-badge">Falacias y engaños argumentativos</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 2.15; justify-content: space-evenly;">
+          <div class="expandable-card" style="flex: 1.2;">
+            <p>En ocasiones, se pretende convencer confundiendo y embaucando al destinatario empleando <strong>falsos argumentos</strong> o <strong>falacias</strong>. Estas suelen basarse en valoraciones emocionales, prejuicios, generalizaciones, opinión de la mayoría, tópicos, descalificaciones,… pero que están planteados de forma que parecen adecuados.</p>
+          </div>
+
+          <div class="expandable-card warm-tint" style="flex: 0.9; align-items: center; text-align: center !important;">
+            <p style="text-align: center !important; margin-bottom: 10px;"><em>La lechuga es cancerígena, lo he leído en internet.</em></p>
+            <p style="text-align: center !important;"><em>Mi amigo Li es trabajador porque todos los chinos son trabajadores.</em></p>
+          </div>
+        </div>
+
+        <div class="pane-image" style="flex: 0.44; max-height: 75%; margin: auto 0;">
+          <img src="media/ilustracion_falacias.jpg" alt="Ilustración sobre los falsos argumentos o falacias">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         DIAPOSITIVA 14: TIPOS DE FALACIAS
+         ======================================================================== -->
+    <section class="slide" data-title="Tipos de falacias">
+      <div class="slide-header">
+        <h2 class="slide-title"><strong>Tipos de falacias</strong></h2>
+        <span class="slide-subtitle-badge"><em>Ad hominem</em> · <em>Ad baculum</em> · <em>Ad ignorantiam</em></span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 2.2;">
+          <div class="expandable-card red-accent" style="flex: 1;">
+            <div class="ambito-heading"><strong>Argumento <em>ad hominem</em></strong></div>
+            <p>Se <span class="hl-red"><strong>descalifica</strong></span> lo dicho por una persona, desprestigiándola: <em>No podemos fiarnos del testimonio de Luis, porque es un mentiroso.</em></p>
+          </div>
+
+          <div class="expandable-card red-accent" style="flex: 1;">
+            <div class="ambito-heading"><strong>Argumento <em>ad baculum</em></strong></div>
+            <p>Se utiliza la <span class="hl-red"><strong>amenaza</strong></span> como razón de peso para dar por válido un argumento: <em>Si no reducís la cuota de la comunidad, tendréis una guerra en la siguiente asamblea de vecinos.</em></p>
+          </div>
+
+          <div class="expandable-card red-accent" style="flex: 1;">
+            <div class="ambito-heading"><strong>Argumento <em>ad ignorantiam</em></strong></div>
+            <p>Se afirma que algo es <span class="hl-red"><strong>verdadero</strong></span> porque no se ha demostrado que es falso: <em>Creo en la existencia de fantasmas porque ningún científico ha podido negar su existencia.</em></p>
+          </div>
+        </div>
+
+        <div class="pane-image zoomable-2x" style="flex: 0.44; max-height: 75%; margin: auto 0;" onclick="toggleZoom2x(event, this)" title="Haz clic para ampliar al doble de su tamaño">
+          <img src="media/image16.png" alt="Viñeta de la falacia del argumento ad ignorantiam">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         DIAPOSITIVA 15: LA ESTRUCTURA DE LOS TEXTOS ARGUMENTATIVOS
+         ======================================================================== -->
+    <section class="slide" data-title="LA ESTRUCTURA DE LOS TEXTOS ARGUMENTATIVOS">
+      <div class="slide-header">
+        <h2 class="slide-title">LA ESTRUCTURA DE LOS TEXTOS ARGUMENTATIVOS</h2>
+        <span class="slide-subtitle-badge">Introducción · Cuerpo argumentativo · Conclusión</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 2.15; justify-content: space-between;">
+          <div class="expandable-card warm-tint" style="flex: 0 0 auto;">
+            <p>En general, la estructura de los textos argumentativos se ajusta al esquema siguiente:</p>
+          </div>
+
+          <div class="expandable-card" style="flex: 1;">
+            <div class="ambito-heading"><strong>ESTRUCTURA INTERNA</strong></div>
+            <ul class="star-list">
+              <li class="star-item"><strong>Introducción:</strong> es donde se enmarca el tema del texto.</li>
+              <li class="star-item"><strong>Cuerpo argumentativo:</strong> está formado por argumentos, contraargumentos y ejemplos.</li>
+              <li class="star-item"><strong>Conclusión:</strong> incluye una reformulación de los argumentos que cierra el texto.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pane-image" style="flex: 0.44; max-height: 75%; margin: auto 0;">
+          <img src="media/ilustracion_estructura.jpg" alt="Arquitectura tripartita de los textos argumentativos">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         DIAPOSITIVA 18: ESTRUCTURA SEGÚN LA POSICIÓN DE LA TESIS
+         ======================================================================== -->
+    <section class="slide" data-title="ESTRUCTURA SEGÚN LA POSICIÓN DE LA TESIS">
+      <div class="slide-header">
+        <h2 class="slide-title">ESTRUCTURA SEGÚN LA POSICIÓN DE LA TESIS</h2>
+        <span class="slide-subtitle-badge">Deductiva · Inductiva · Encuadrada</span>
+      </div>
+      <div class="slide-body">
+        <div class="structure-diagram-wrapper">
+          <div class="structure-top-node">Tipos de estructura argumentativa</div>
+
+          <div class="structure-cols-3">
+            <!-- Columna 1: Deductiva -->
+            <div class="structure-col-card expandable-card" style="border-left-width: 1.5px; justify-content: flex-start;">
+              <div class="structure-col-header">Deductiva</div>
+              <div class="struct-step-box pink-tesis">
+                <p><strong>1</strong> La tesis aparece al <strong>comienzo</strong> del texto.</p>
+              </div>
+              <div class="struct-step-box blue-cuerpo">
+                <p><strong>2</strong> Cuerpo argumentativo.</p>
+              </div>
+            </div>
+
+            <!-- Columna 2: Inductiva -->
+            <div class="structure-col-card expandable-card" style="border-left-width: 1.5px; justify-content: flex-start;">
+              <div class="structure-col-header">Inductiva</div>
+              <div class="struct-step-box blue-cuerpo">
+                <p><strong>1</strong> Cuerpo argumentativo.</p>
+              </div>
+              <div class="struct-step-box pink-tesis">
+                <p><strong>2</strong> La tesis aparece al <strong>final</strong> del texto.</p>
+              </div>
+            </div>
+
+            <!-- Columna 3: Encuadrada -->
+            <div class="structure-col-card expandable-card" style="border-left-width: 1.5px; justify-content: flex-start;">
+              <div class="structure-col-header">Encuadrada</div>
+              <div class="struct-step-box pink-tesis">
+                <p><strong>1</strong> La tesis aparece al <strong>comienzo</strong> del texto.</p>
+              </div>
+              <div class="struct-step-box blue-cuerpo">
+                <p><strong>2</strong> Cuerpo argumentativo.</p>
+              </div>
+              <div class="struct-step-box pink-tesis">
+                <p><strong>3</strong> La tesis se repite al <strong>final</strong> del texto a modo de conclusión.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         DIAPOSITIVA 19: ACTIVIDADES DOSSIER (1, 2, 3, 4, 5)
+         ======================================================================== -->
+    <section class="slide" data-title="Actividades dossier (nº 1, 2, 3, 4, 5)">
+      <div class="slide-header">
+        <h2 class="slide-title">ACTIVIDADES DOSSIER</h2>
+        <span class="slide-subtitle-badge">Práctica 1–5</span>
+      </div>
+      <div class="slide-body" style="align-items: center;">
+        <div class="dossier-card-slate expandable-card">
+          <h2><u><strong>Actividades dossier</strong></u></h2>
+          <p class="dossier-nums">Actividades nº 1, 2, 3, 4, 5</p>
+        </div>
+
+        <div class="pane-image" style="height: 82%;">
+          <img src="media/image18.png" alt="M. C. Escher - Manos dibujando">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         DIAPOSITIVA 20: ACTIVIDADES DOSSIER (6, 7, 8, 9)
+         ======================================================================== -->
+    <section class="slide" data-title="Actividades dossier (nº 6, 7, 8, 9)">
+      <div class="slide-header">
+        <h2 class="slide-title">ACTIVIDADES DOSSIER</h2>
+        <span class="slide-subtitle-badge">Práctica 6–9</span>
+      </div>
+      <div class="slide-body" style="align-items: center;">
+        <div class="dossier-card-slate expandable-card">
+          <h2><u><strong>Actividades dossier</strong></u></h2>
+          <p class="dossier-nums">Actividades nº 6, 7, 8, 9</p>
+        </div>
+
+        <div class="pane-image" style="height: 82%;">
+          <img src="media/image18.png" alt="M. C. Escher - Manos dibujando">
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BARRA INFERIOR DE NAVEGACIÓN -->
+  <footer class="bottom-bar">
+    <div class="progress-track" id="progressTrack" title="Haz clic para saltar a una diapositiva">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="nav-controls">
+      <button class="nav-arrow-btn" id="prevBtn" onclick="prevSlide()">◀ Anterior</button>
+      <span class="slide-counter-pill" id="slideCounter">01 / 20</span>
+      <button class="nav-arrow-btn" id="nextBtn" onclick="nextSlide()">Siguiente ▶</button>
+    </div>
+  </footer>
+
+</div>
+
+<!-- MODAL PARA AMPLIAR TARJETAS Y TABLAS AL PINCHAR ENCIMA -->
+<div class="card-modal-overlay" id="cardModalOverlay" onclick="closeCardModal(event)">
+  <div class="card-modal-box" id="cardModalBox">
+    <button class="card-modal-close" onclick="closeCardModal(event)" title="Cerrar (Esc)">×</button>
+    <div class="card-modal-body" id="cardModalBody"></div>
+    <div class="card-modal-footer">Haz clic fuera de la tarjeta o pulsa Esc para cerrar</div>
+  </div>
+</div>
+
+<!-- LIGHTBOX PARA AMPLIAR IMÁGENES -->
+<div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()">
+  <img class="lightbox-img" id="lightboxImg" src="" alt="Imagen ampliada">
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
+
+<!-- MODAL DE ÍNDICE DE DIAPOSITIVAS -->
+<div class="index-modal-overlay" id="indexModalOverlay" onclick="if(event.target===this) toggleIndexModal()">
+  <div class="index-drawer">
+    <div class="index-drawer-header">
+      <h3>Índice de Diapositivas · LA ARGUMENTACIÓN (4º ESO)</h3>
+      <button class="ctrl-btn" onclick="toggleIndexModal()">✕ Cerrar</button>
+    </div>
+    <div class="index-drawer-grid" id="indexDrawerGrid"></div>
+  </div>
+</div>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+  let fontScale = 1;
+
+  const progressFill = document.getElementById('progressFill');
+  const progressTrack = document.getElementById('progressTrack');
+  const slideCounter = document.getElementById('slideCounter');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const indexDrawerGrid = document.getElementById('indexDrawerGrid');
+  const indexModalOverlay = document.getElementById('indexModalOverlay');
+  const cardModalOverlay = document.getElementById('cardModalOverlay');
+  const cardModalBody = document.getElementById('cardModalBody');
+  const lightboxOverlay = document.getElementById('lightboxOverlay');
+
+  // Construir el índice interactivo
+  slides.forEach((slide, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'index-item-btn';
+    const num = String(idx + 1).padStart(2, '0');
+    const title = slide.dataset.title || `Diapositiva ${num}`;
+    btn.innerHTML = `<span class="index-item-num">${num}</span><span>${title}</span>`;
+    btn.onclick = () => {
+      goToSlide(idx);
+      toggleIndexModal();
+    };
+    indexDrawerGrid.appendChild(btn);
+  });
+
+  function updateUI() {
+    slides.forEach((s, i) => {
+      s.classList.toggle('active', i === currentSlide);
+    });
+
+    const numStr = String(currentSlide + 1).padStart(2, '0');
+    const totStr = String(totalSlides).padStart(2, '0');
+    slideCounter.textContent = `${numStr} / ${totStr}`;
+
+    prevBtn.disabled = currentSlide === 0;
+    nextBtn.disabled = currentSlide === totalSlides - 1;
+
+    const pct = ((currentSlide + 1) / totalSlides) * 100;
+    progressFill.style.width = `${pct}%`;
+
+    // Actualizar píldoras de sección superior
+    const slideNum1Based = currentSlide + 1;
+    document.querySelectorAll('.nav-pill').forEach(pill => {
+      const [minS, maxS] = pill.dataset.range.split('-').map(Number);
+      pill.classList.toggle('active', slideNum1Based >= minS && slideNum1Based <= maxS);
+    });
+
+    // Actualizar índice lateral
+    document.querySelectorAll('.index-item-btn').forEach((item, idx) => {
+      item.classList.toggle('current', idx === currentSlide);
+    });
+  }
+
+  let rasgosViewIndex = 0;
+  let activeRasgosFilter = null;
+
+  function setRasgosView(viewIdx) {
+    rasgosViewIndex = viewIdx;
+    document.getElementById('rasgosTabTeoria').classList.toggle('active', viewIdx === 0);
+    document.getElementById('rasgosTabEjemplo').classList.toggle('active', viewIdx === 1);
+    document.getElementById('rasgosPanel0').classList.toggle('active', viewIdx === 0);
+    document.getElementById('rasgosPanel1').classList.toggle('active', viewIdx === 1);
+  }
+
+  function filterRasgosCategory(e, cls) {
+    e.stopPropagation();
+    const textCard = document.getElementById('rasgosEjemploTextCard');
+    const items = document.querySelectorAll('.rasgos-legend-item');
+    if (activeRasgosFilter === cls) {
+      activeRasgosFilter = null;
+      textCard.classList.remove('filtering');
+      textCard.querySelectorAll('.r-hl').forEach(el => el.classList.remove('spotlight'));
+      items.forEach(item => item.classList.remove('active-filter'));
+      return;
+    }
+    activeRasgosFilter = cls;
+    textCard.classList.add('filtering');
+    textCard.querySelectorAll('.r-hl').forEach(el => {
+      el.classList.toggle('spotlight', el.classList.contains(cls));
+    });
+    items.forEach(item => {
+      item.classList.toggle('active-filter', item.getAttribute('onclick').includes(cls));
+    });
+  }
+
+  function goToSlide(index) {
+    if (index >= 0 && index < totalSlides) {
+      currentSlide = index;
+      if (currentSlide === 6) {
+        setRasgosView(0);
+      }
+      updateUI();
+    }
+  }
+
+  function nextSlide() {
+    if (currentSlide === 6 && rasgosViewIndex === 0) {
+      setRasgosView(1);
+      return;
+    }
+    if (currentSlide < totalSlides - 1) {
+      currentSlide++;
+      if (currentSlide === 6) {
+        setRasgosView(0);
+      }
+      updateUI();
+    }
+  }
+
+  function prevSlide() {
+    if (currentSlide === 6 && rasgosViewIndex === 1) {
+      setRasgosView(0);
+      return;
+    }
+    if (currentSlide > 0) {
+      currentSlide--;
+      if (currentSlide === 6) {
+        setRasgosView(1);
+      }
+      updateUI();
+    }
+  }
+
+  // Barra de progreso interactiva
+  progressTrack.addEventListener('click', (e) => {
+    const rect = progressTrack.getBoundingClientRect();
+    const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    goToSlide(Math.min(totalSlides - 1, Math.floor(ratio * totalSlides)));
+  });
+
+  // Ajuste de escala tipográfica
+  function adjustFont(delta) {
+    fontScale = Math.min(1.25, Math.max(0.82, fontScale + delta));
+    document.documentElement.style.setProperty('--font-scale', fontScale);
+  }
+
+  // Pantalla completa
+  function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(() => {});
+    } else if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
+
+  // Índice modal
+  function toggleIndexModal() {
+    indexModalOverlay.classList.toggle('active');
+  }
+
+  // Lightbox de imágenes
+  function openLightbox(src, caption) {
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightboxCaption').textContent = caption || '';
+    lightboxOverlay.classList.add('active');
+  }
+
+  function closeLightbox() {
+    lightboxOverlay.classList.remove('active');
+  }
+
+  // Ampliación de tarjetas y tablas al pinchar encima
+  function openCardModal(cardEl) {
+    const clone = cardEl.cloneNode(true);
+    clone.querySelectorAll('button.start-presentation-btn').forEach(b => b.remove());
+    cardModalBody.innerHTML = clone.innerHTML;
+    cardModalOverlay.classList.add('active');
+  }
+
+  function closeCardModal(e) {
+    if (e && e.target.closest('#cardModalBox') && !e.target.closest('.card-modal-close')) {
+      return;
+    }
+    cardModalOverlay.classList.remove('active');
+  }
+
+  function toggleZoom2x(e, el) {
+    e.stopPropagation();
+    el.classList.toggle('zoomed-2x');
+  }
+
+  document.getElementById('slideStage').addEventListener('click', (e) => {
+    document.querySelectorAll('.zoomed-2x').forEach(z => {
+      if (!z.contains(e.target)) z.classList.remove('zoomed-2x');
+    });
+    if (e.target.closest('button') || e.target.closest('.pane-image') || e.target.closest('a')) {
+      return;
+    }
+    const flipCard = e.target.closest('.flip-card-s2');
+    if (flipCard && !flipCard.classList.contains('is-flipped')) {
+      flipCard.classList.add('is-flipped');
+      return;
+    }
+    const card = e.target.closest('.expandable-card, .comp-table-wrap');
+    if (card) {
+      openCardModal(card);
+    }
+  });
+
+  // Interactividad en Diapositiva 13 (Revelar respuesta individual o todas)
+  function revealSingleAnswer(e, btn) {
+    e.stopPropagation();
+    const box = btn.closest('.arg-answer-box');
+    if (box) {
+      box.classList.remove('hidden-answer');
+      box.classList.add('revealed');
+    }
+  }
+
+  let allQuizRevealed = false;
+  function toggleAllQuizAnswers(e) {
+    e.stopPropagation();
+    allQuizRevealed = !allQuizRevealed;
+    const parentSlide = e.target.closest('.slide');
+    const boxes = parentSlide ? parentSlide.querySelectorAll('.arg-answer-box') : [];
+    boxes.forEach(box => {
+      box.classList.toggle('revealed', allQuizRevealed);
+      box.classList.toggle('hidden-answer', !allQuizRevealed);
+    });
+  }
+
+  // Navegación por teclado
+  window.addEventListener('keydown', (e) => {
+    if (cardModalOverlay.classList.contains('active')) {
+      if (e.key === 'Escape') closeCardModal();
+      return;
+    }
+    if (lightboxOverlay.classList.contains('active')) {
+      if (e.key === 'Escape') closeLightbox();
+      return;
+    }
+    if (indexModalOverlay.classList.contains('active')) {
+      if (e.key === 'Escape') toggleIndexModal();
+      return;
+    }
+
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+      e.preventDefault();
+      nextSlide();
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key === 'Backspace') {
+      e.preventDefault();
+      prevSlide();
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      goToSlide(0);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      goToSlide(totalSlides - 1);
+    } else if (e.key.toLowerCase() === 'f') {
+      e.preventDefault();
+      toggleFullscreen();
+    } else if (e.key.toLowerCase() === 'm' || e.key.toLowerCase() === 'i') {
+      e.preventDefault();
+      toggleIndexModal();
+    }
+  });
+
+  // Navegación táctil (Swipe en móviles y tablets)
+  let touchStartX = 0;
+  let touchStartY = 0;
+  window.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
+
+  window.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    const dy = e.changedTouches[0].screenY - touchStartY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 48) {
+      if (dx < 0) nextSlide();
+      else prevSlide();
+    }
+  }, { passive: true });
+
+  updateUI();
+</script>
+</body>
+</html>
