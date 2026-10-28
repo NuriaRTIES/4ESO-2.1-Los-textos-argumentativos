@@ -7,6 +7,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet">
+  <script>
+    function resolveSlideImg(img, fileName) {
+      const candidates = [
+        fileName,
+        'Github media/' + fileName,
+        'Github%20media/' + fileName,
+        'media/' + fileName,
+        'github media/' + fileName,
+        'github%20media/' + fileName
+      ];
+      const idx = parseInt(img.dataset.fallbackIdx || '0', 10);
+      if (idx < candidates.length) {
+        img.dataset.fallbackIdx = String(idx + 1);
+        img.src = candidates[idx];
+      }
+    }
+  </script>
   <style>
     /* ==========================================================================
        VARIABLES Y PALETA DE COLORES (INSPIRADA EN EL ORIGINAL + M.C. ESCHER)
@@ -1765,7 +1782,7 @@
         </div>
 
         <div class="pane-image">
-          <img src="media/ilustracion_que_es.jpg" alt="Diálogo argumentativo en contextos formales e informales">
+          <img src="Github media/ilustracion_que_es.jpg" onerror="resolveSlideImg(this, 'ilustracion_que_es.jpg')" alt="Diálogo argumentativo en contextos formales e informales">
         </div>
       </div>
     </section>
@@ -1794,7 +1811,7 @@
         </div>
 
         <div class="pane-image" style="flex: 0.44; max-height: 75%; margin: auto 0;">
-          <img src="media/ilustracion_textos_comparados.jpg" alt="Ilustración sobre el humor y la longevidad">
+          <img src="Github media/ilustracion_textos_comparados.jpg" onerror="resolveSlideImg(this, 'ilustracion_textos_comparados.jpg')" alt="Ilustración sobre el humor y la longevidad">
         </div>
       </div>
     </section>
@@ -1819,7 +1836,7 @@
         </div>
 
         <div class="pane-image" style="flex: 0.44; max-height: 75%; margin: auto 0;">
-          <img src="media/image10.png" alt="M. C. Escher - Relatividad">
+          <img src="Github media/image10.png" onerror="resolveSlideImg(this, 'image10.png')" alt="M. C. Escher - Relatividad">
         </div>
       </div>
     </section>
@@ -1856,7 +1873,7 @@
         </div>
 
         <div class="pane-image" style="flex: 0.42; max-height: 74%; margin: auto 0;">
-          <img src="media/ilustracion_ambitos.jpg" alt="Mosaico de los cuatro ámbitos de uso de la argumentación">
+          <img src="Github media/ilustracion_ambitos.jpg" onerror="resolveSlideImg(this, 'ilustracion_ambitos.jpg')" alt="Mosaico de los cuatro ámbitos de uso de la argumentación">
         </div>
       </div>
     </section>
@@ -2035,7 +2052,7 @@
         </div>
 
         <div class="pane-image">
-          <img src="media/ilustracion_tema_tesis.jpg" alt="Ilustración de Tema y Tesis sobre la gestión del agua">
+          <img src="Github media/ilustracion_tema_tesis.jpg" onerror="resolveSlideImg(this, 'ilustracion_tema_tesis.jpg')" alt="Ilustración de Tema y Tesis sobre la gestión del agua">
         </div>
       </div>
     </section>
@@ -2061,7 +2078,7 @@
         </div>
 
         <div class="pane-image" style="flex: 0.75;">
-          <img src="media/ilustracion_phubbing.jpg" alt="Ilustración sobre el uso excesivo de teléfonos inteligentes y el phubbing">
+          <img src="Github media/ilustracion_phubbing.jpg" onerror="resolveSlideImg(this, 'ilustracion_phubbing.jpg')" alt="Ilustración sobre el uso excesivo de teléfonos inteligentes y el phubbing">
         </div>
       </div>
     </section>
@@ -2086,7 +2103,7 @@
         </div>
 
         <div class="pane-image">
-          <img src="media/image13.png" class="no-blend" alt="Ilustración de diálogo y clarificación de argumentos">
+          <img src="Github media/image13.png" onerror="resolveSlideImg(this, 'image13.png')" class="no-blend" alt="Ilustración de diálogo y clarificación de argumentos">
         </div>
       </div>
     </section>
@@ -2287,7 +2304,7 @@
         </div>
 
         <div class="pane-image" style="flex: 0.44; max-height: 75%; margin: auto 0;">
-          <img src="media/ilustracion_falacias.jpg" alt="Ilustración sobre los falsos argumentos o falacias">
+          <img src="Github media/ilustracion_falacias.jpg" onerror="resolveSlideImg(this, 'ilustracion_falacias.jpg')" alt="Ilustración sobre los falsos argumentos o falacias">
         </div>
       </div>
     </section>
@@ -2319,7 +2336,7 @@
         </div>
 
         <div class="pane-image zoomable-2x" style="flex: 0.44; max-height: 75%; margin: auto 0;" onclick="toggleZoom2x(event, this)" title="Haz clic para ampliar al doble de su tamaño">
-          <img src="media/image16.png" alt="Viñeta de la falacia del argumento ad ignorantiam">
+          <img src="Github media/image16.png" onerror="resolveSlideImg(this, 'image16.png')" alt="Viñeta de la falacia del argumento ad ignorantiam">
         </div>
       </div>
     </section>
@@ -2349,7 +2366,7 @@
         </div>
 
         <div class="pane-image" style="flex: 0.44; max-height: 75%; margin: auto 0;">
-          <img src="media/ilustracion_estructura.jpg" alt="Arquitectura tripartita de los textos argumentativos">
+          <img src="Github media/ilustracion_estructura.jpg" onerror="resolveSlideImg(this, 'ilustracion_estructura.jpg')" alt="Arquitectura tripartita de los textos argumentativos">
         </div>
       </div>
     </section>
@@ -2422,7 +2439,7 @@
         </div>
 
         <div class="pane-image" style="height: 82%;">
-          <img src="media/image18.png" alt="M. C. Escher - Manos dibujando">
+          <img src="Github media/image18.png" onerror="resolveSlideImg(this, 'image18.png')" alt="M. C. Escher - Manos dibujando">
         </div>
       </div>
     </section>
@@ -2442,7 +2459,7 @@
         </div>
 
         <div class="pane-image" style="height: 82%;">
-          <img src="media/image18.png" alt="M. C. Escher - Manos dibujando">
+          <img src="Github media/image18.png" onerror="resolveSlideImg(this, 'image18.png')" alt="M. C. Escher - Manos dibujando">
         </div>
       </div>
     </section>
@@ -2769,6 +2786,21 @@
       else prevSlide();
     }
   }, { passive: true });
+
+  // Fallback automático de rutas de imágenes para GitHub Pages (soporta /media, /Github media o raíz)
+  document.querySelectorAll('.pane-image img').forEach(img => {
+    const rawAttr = img.getAttribute('src') || '';
+    const fileName = rawAttr.split('/').pop();
+    let step = 0;
+    img.addEventListener('error', () => {
+      step++;
+      if (step === 1) {
+        img.src = `Github media/${fileName}`;
+      } else if (step === 2) {
+        img.src = fileName;
+      }
+    });
+  });
 
   updateUI();
 </script>
